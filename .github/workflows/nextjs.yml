@@ -1,45 +1,36 @@
-name: Deploy Next.js site to Pages
-
-on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
+      # 1️⃣ Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "pnpm"
 
+      # 2️⃣ Setup pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 9
+          version: 9  # or the version your project uses
 
+      # 3️⃣ Install dependencies with pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # 4️⃣ Build Next.js
       - name: Build Next.js
         run: pnpm next build
 
+      # 5️⃣ Export static site
       - name: Export static site
         run: pnpm next export
 
+      # 6️⃣ Upload artifact for GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
