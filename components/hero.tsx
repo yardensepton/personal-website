@@ -1,5 +1,6 @@
 import { ArrowDown, Github, Linkedin } from "lucide-react"
 import Image from "next/image"
+import yardenImg from "../public/yarden.jpg"
 
 export function Hero() {
   return (
@@ -7,7 +8,7 @@ export function Hero() {
       <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
         <div className="mb-8 overflow-hidden rounded-full border-4 border-white/10 shadow-2xl ring-4 ring-white/5 bg-white/5 backdrop-blur-sm">
           <Image
-            src="/yarden.jpg"
+            src={yardenImg}
             alt="Yarden Septon"
             width={160}
             height={160}
