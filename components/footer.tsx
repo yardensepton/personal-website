@@ -8,9 +8,9 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-primary/95 px-6 py-10 backdrop-blur-sm">
+    <footer className="px-6 py-12 border-t border-white/5">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 sm:flex-row">
-        <p className="text-sm text-primary-foreground/60">
+        <p className="text-sm font-medium text-white/40">
           {"© 2026 Yarden Septon. All rights reserved."}
         </p>
 
@@ -21,10 +21,10 @@ export function Footer() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-primary-foreground/50 transition-colors hover:text-primary-foreground"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/50 transition-all duration-300 hover:text-white hover:bg-white/10 hover:-translate-y-1"
               aria-label={link.label}
             >
-              <link.icon className="h-4 w-4" />
+              <link.icon className="h-5 w-5" />
             </a>
           ))}
         </div>
