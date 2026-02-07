@@ -48,14 +48,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Scroll reveal animations */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* Scroll reveal animations - Only on desktop */
+@media (min-width: 768px) {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-reveal.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.scroll-reveal.animate-in {
-  opacity: 1;
-  transform: translateY(0);
+/* On mobile, ensure they are always visible and static */
+@media (max-width: 767px) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

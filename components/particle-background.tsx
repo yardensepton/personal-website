@@ -18,7 +18,11 @@ export function ParticleBackground() {
   const mouseRef = useRef({ x: -1000, y: -1000 })
 
   const initParticles = useCallback((width: number, height: number) => {
-    const count = Math.floor((width * height) / 12000)
+    // Reduce particle density on mobile (smaller width)
+    const isMobile = width < 768
+    const baseDensity = isMobile ? 50000 : 12000
+    const count = Math.floor((width * height) / baseDensity)
+
     const particles: Particle[] = []
     for (let i = 0; i < count; i++) {
       particles.push({
@@ -26,8 +30,8 @@ export function ParticleBackground() {
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 1.5 + 0.5,
-        opacity: Math.random() * 0.5 + 0.2,
+        radius: Math.random() * (isMobile ? 1 : 1.5) + 0.5,
+        opacity: Math.random() * 0.4 + 0.1,
       })
     }
     particlesRef.current = particles
@@ -50,9 +54,21 @@ export function ParticleBackground() {
       mouseRef.current = { x: e.clientX, y: e.clientY }
     }
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouseRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+      }
+    }
+
+    const handleTouchEnd = () => {
+      mouseRef.current = { x: -1000, y: -1000 }
+    }
+
     handleResize()
     window.addEventListener("resize", handleResize)
     window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("touchmove", handleTouchMove, { passive: true })
+    window.addEventListener("touchend", handleTouchEnd)
 
     const lineColor = { r: 148, g: 163, b: 184 } // slate-400
 
@@ -61,8 +77,9 @@ export function ParticleBackground() {
 
       const particles = particlesRef.current
       const mouse = mouseRef.current
-      const connectionDistance = 120
-      const mouseDistance = 180
+      const isMobile = canvas.width < 768
+      const connectionDistance = isMobile ? 80 : 120
+      const mouseDistance = isMobile ? 120 : 180
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i]
@@ -71,9 +88,11 @@ export function ParticleBackground() {
         p.x += p.vx
         p.y += p.vy
 
-        // Bounce off edges
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
+        // Wrap around instead of bounce for a more fluid feel on mobile
+        if (p.x < 0) p.x = canvas.width
+        else if (p.x > canvas.width) p.x = 0
+        if (p.y < 0) p.y = canvas.height
+        else if (p.y > canvas.height) p.y = 0
 
         // Subtle mouse repulsion
         const dx = p.x - mouse.x
@@ -86,8 +105,8 @@ export function ParticleBackground() {
         }
 
         // Dampen velocity
-        p.vx *= 0.999
-        p.vy *= 0.999
+        p.vx *= 0.99
+        p.vy *= 0.99
 
         // Draw particle
         ctx.beginPath()
@@ -95,15 +114,16 @@ export function ParticleBackground() {
         ctx.fillStyle = `rgba(${lineColor.r}, ${lineColor.g}, ${lineColor.b}, ${p.opacity})`
         ctx.fill()
 
-        // Connect nearby particles
-        for (let j = i + 1; j < particles.length; j++) {
+        // Connect nearby particles - skip some connections on mobile for performance
+        const skipStep = isMobile ? 2 : 1
+        for (let j = i + skipStep; j < particles.length; j += skipStep) {
           const p2 = particles[j]
           const cdx = p.x - p2.x
           const cdy = p.y - p2.y
           const cDist = Math.sqrt(cdx * cdx + cdy * cdy)
 
           if (cDist < connectionDistance) {
-            const alpha = (1 - cDist / connectionDistance) * 0.15
+            const alpha = (1 - cDist / connectionDistance) * (isMobile ? 0.1 : 0.15)
             ctx.beginPath()
             ctx.moveTo(p.x, p.y)
             ctx.lineTo(p2.x, p2.y)
@@ -123,13 +143,15 @@ export function ParticleBackground() {
       cancelAnimationFrame(animationRef.current)
       window.removeEventListener("resize", handleResize)
       window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("touchmove", handleTouchMove)
+      window.removeEventListener("touchend", handleTouchEnd)
     }
   }, [initParticles])
 
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0"
+      className="pointer-events-none fixed inset-0 z-0 opacity-60 md:opacity-100"
       aria-hidden="true"
     />
   )

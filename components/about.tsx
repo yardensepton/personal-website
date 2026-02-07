@@ -2,23 +2,23 @@ import { ScrollReveal } from "./scroll-reveal"
 
 export function About() {
   return (
-    <section id="about" className="px-6 py-24 lg:py-32">
+    <section id="about" className="px-4 py-20 sm:px-6 lg:py-32">
       <div className="mx-auto max-w-4xl">
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-accent sm:text-xs">
               About
             </p>
-            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
               A bit about me
             </h2>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <div className="rounded-2xl bg-card/50 backdrop-blur-xl p-8 shadow-lg md:p-12 border border-white/10">
+          <div className="rounded-2xl bg-card/50 backdrop-blur-xl p-6 shadow-lg sm:p-12 border border-white/10">
             <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
-              <p className="text-lg text-foreground/90">
+              <p className="text-lg text-foreground/90 leading-tight sm:leading-relaxed">
                 {"I'm a Software Engineer with hands-on experience developing and maintaining production systems using C# and .NET. I graduated with a B.Sc. in Software Engineering from Afeka College of Engineering, and since then I've been focused on building systems that are clean, well-structured, and built to last."}
               </p>
               <p>

@@ -42,7 +42,7 @@ export function Skills() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {skillGroups.map((group, index) => (
             <ScrollReveal key={group.title} delay={index * 100}>
-              <div className="h-full group rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-accent/50">
+              <div className="h-full group rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-300 sm:hover:shadow-xl sm:hover:-translate-y-2 sm:hover:border-accent/50">
                 <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10 ring-2 ring-accent/20 transition-all duration-300 group-hover:ring-accent/40 group-hover:bg-accent/20">
                   <group.icon className="h-7 w-7 text-accent" />
                 </div>

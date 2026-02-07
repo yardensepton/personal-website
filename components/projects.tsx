@@ -50,7 +50,7 @@ export function Projects() {
         <div className="grid gap-6 sm:grid-cols-2">
           {projects.map((project, index) => (
             <ScrollReveal key={project.name} delay={index * 150}>
-              <div className="h-full group flex flex-col rounded-2xl border border-border/50 bg-card/50 backdrop-blur-xl p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-accent/50">
+              <div className="h-full group flex flex-col rounded-2xl border border-border/50 bg-card/50 backdrop-blur-xl p-8 shadow-md transition-all duration-300 sm:hover:shadow-xl sm:hover:-translate-y-2 sm:hover:border-accent/50">
                 <h3 className="text-lg font-semibold text-card-foreground">
                   {project.name}
                 </h3>

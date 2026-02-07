@@ -62,15 +62,15 @@ export function Experience() {
         <ScrollReveal delay={200}>
           <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-xl shadow-lg">
             {/* Tab triggers */}
-            <div className="flex border-b border-border">
+            <div className="flex flex-col border-b border-border sm:flex-row">
               {experiences.map((exp) => (
                 <button
                   key={exp.id}
                   type="button"
                   onClick={() => setActiveTab(exp.id)}
-                  className={`relative flex-1 px-6 py-4 text-sm font-medium transition-colors ${activeTab === exp.id
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                  className={`relative px-6 py-4 text-left text-sm font-medium transition-colors sm:flex-1 sm:text-center ${activeTab === exp.id
+                    ? "text-primary bg-white/5 sm:bg-transparent"
+                    : "text-muted-foreground hover:text-foreground hover:bg-white/5 sm:hover:bg-transparent"
                     }`}
                 >
                   <span className="relative z-10">{exp.company}</span>
@@ -78,7 +78,10 @@ export function Experience() {
                     {exp.period}
                   </span>
                   {activeTab === exp.id && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary sm:block" />
+                  )}
+                  {activeTab === exp.id && (
+                    <span className="absolute left-0 top-0 bottom-0 w-1 bg-primary sm:hidden" />
                   )}
                 </button>
               ))}
