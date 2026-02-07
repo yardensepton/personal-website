@@ -42,19 +42,19 @@ export function ParticleBackground() {
 
     const handleResize = () => {
       canvas.width = window.innerWidth
-      canvas.height = document.documentElement.scrollHeight
+      canvas.height = window.innerHeight
       initParticles(canvas.width, canvas.height)
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY + window.scrollY }
+      mouseRef.current = { x: e.clientX, y: e.clientY }
     }
 
     handleResize()
     window.addEventListener("resize", handleResize)
     window.addEventListener("mousemove", handleMouseMove)
 
-    const lineColor = { r: 69, g: 104, b: 130 } // #456882
+    const lineColor = { r: 148, g: 163, b: 184 } // slate-400
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -119,18 +119,10 @@ export function ParticleBackground() {
 
     animate()
 
-    // Observe body height changes to resize canvas
-    const observer = new ResizeObserver(() => {
-      canvas.width = window.innerWidth
-      canvas.height = document.documentElement.scrollHeight
-    })
-    observer.observe(document.body)
-
     return () => {
       cancelAnimationFrame(animationRef.current)
       window.removeEventListener("resize", handleResize)
       window.removeEventListener("mousemove", handleMouseMove)
-      observer.disconnect()
     }
   }, [initParticles])
 

@@ -2,7 +2,7 @@ import { ScrollReveal } from "./scroll-reveal"
 
 export function About() {
   return (
-    <section id="about" className="bg-muted/40 px-6 py-24 lg:py-32">
+    <section id="about" className="px-6 py-24 lg:py-32">
       <div className="mx-auto max-w-4xl">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -16,7 +16,7 @@ export function About() {
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <div className="rounded-2xl bg-card p-8 shadow-lg md:p-12">
+          <div className="rounded-2xl bg-card/50 backdrop-blur-xl p-8 shadow-lg md:p-12 border border-white/10">
             <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
               <p className="text-lg text-foreground/90">
                 {"I'm a Software Engineer with hands-on experience developing and maintaining production systems using C# and .NET. I graduated with a B.Sc. in Software Engineering from Afeka College of Engineering, and since then I've been focused on building systems that are clean, well-structured, and built to last."}

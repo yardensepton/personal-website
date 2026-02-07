@@ -34,7 +34,7 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projects" className="bg-background px-6 py-24 lg:py-32">
+    <section id="projects" className="px-6 py-24 lg:py-32">
       <div className="mx-auto max-w-5xl">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -50,7 +50,7 @@ export function Projects() {
         <div className="grid gap-6 sm:grid-cols-2">
           {projects.map((project, index) => (
             <ScrollReveal key={project.name} delay={index * 150}>
-              <div className="h-full group flex flex-col rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-accent/50">
+              <div className="h-full group flex flex-col rounded-2xl border border-border/50 bg-card/50 backdrop-blur-xl p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-accent/50">
                 <h3 className="text-lg font-semibold text-card-foreground">
                   {project.name}
                 </h3>

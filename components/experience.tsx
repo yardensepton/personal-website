@@ -46,7 +46,7 @@ export function Experience() {
   const active = experiences.find((e) => e.id === activeTab)!
 
   return (
-    <section id="experience" className="bg-muted/40 px-6 py-24 lg:py-32">
+    <section id="experience" className="px-6 py-24 lg:py-32">
       <div className="mx-auto max-w-4xl">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -60,7 +60,7 @@ export function Experience() {
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <div className="overflow-hidden rounded-2xl bg-card shadow-lg border border-border">
+          <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-xl shadow-lg">
             {/* Tab triggers */}
             <div className="flex border-b border-border">
               {experiences.map((exp) => (
@@ -69,8 +69,8 @@ export function Experience() {
                   type="button"
                   onClick={() => setActiveTab(exp.id)}
                   className={`relative flex-1 px-6 py-4 text-sm font-medium transition-colors ${activeTab === exp.id
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
                     }`}
                 >
                   <span className="relative z-10">{exp.company}</span>

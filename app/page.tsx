@@ -6,11 +6,13 @@ import { Skills } from "@/components/skills"
 import { Projects } from "@/components/projects"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
+import { ModernBackground } from "@/components/modern-background"
 import { ParticleBackground } from "@/components/particle-background"
 
 export default function Page() {
   return (
     <>
+      <ModernBackground />
       <ParticleBackground />
       <div className="relative z-10">
         <Navbar />

@@ -26,7 +26,7 @@ const skillGroups = [
 
 export function Skills() {
   return (
-    <section id="skills" className="bg-background px-6 py-24 lg:py-32">
+    <section id="skills" className="px-6 py-24 lg:py-32">
       <div className="mx-auto max-w-6xl">
         <ScrollReveal>
           <div className="text-center mb-16">
