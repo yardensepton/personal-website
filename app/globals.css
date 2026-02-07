@@ -10,26 +10,27 @@
 
 @layer base {
   :root {
-    --background: 30 20% 97%;
-    --foreground: 204 51% 22%;
+    /* Professional navy and slate palette */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 27%;
     --card: 0 0% 100%;
-    --card-foreground: 204 51% 22%;
+    --card-foreground: 215 25% 27%;
     --popover: 0 0% 100%;
-    --popover-foreground: 204 51% 22%;
-    --primary: 204 51% 22%;
-    --primary-foreground: 30 20% 97%;
-    --secondary: 23 22% 77%;
-    --secondary-foreground: 204 51% 22%;
-    --muted: 23 18% 90%;
-    --muted-foreground: 207 31% 39%;
-    --accent: 207 31% 39%;
-    --accent-foreground: 30 20% 97%;
+    --popover-foreground: 215 25% 27%;
+    --primary: 215 28% 17%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 20% 93%;
+    --secondary-foreground: 215 25% 27%;
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 15% 50%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 23 18% 82%;
-    --input: 23 18% 82%;
-    --ring: 206 49% 28%;
-    --radius: 0.5rem;
+    --border: 215 16% 87%;
+    --input: 215 16% 92%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem;
   }
 }
 
@@ -37,6 +38,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -44,4 +46,16 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Scroll reveal animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.animate-in {
+  opacity: 1;
+  transform: translateY(0);
 }

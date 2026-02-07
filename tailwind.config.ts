@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-red-hat)', 'Red Hat Display', 'system-ui', 'sans-serif'],
         mono: ['var(--font-source-code-pro)', 'monospace'],
       },
       colors: {

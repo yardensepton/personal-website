@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Building2, Calendar, MapPin, ChevronRight } from "lucide-react"
+import { ScrollReveal } from "./scroll-reveal"
 
 const experiences = [
   {
@@ -45,93 +46,96 @@ export function Experience() {
   const active = experiences.find((e) => e.id === activeTab)!
 
   return (
-    <section id="experience" className="bg-secondary/30 px-6 py-24 backdrop-blur-sm lg:py-32">
+    <section id="experience" className="bg-muted/40 px-6 py-24 lg:py-32">
       <div className="mx-auto max-w-4xl">
-        <div className="text-center">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-accent">
-            Career
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Professional Experience
-          </h2>
-        </div>
-
-        <div className="mt-14 overflow-hidden rounded-xl bg-card shadow-sm">
-          {/* Tab triggers */}
-          <div className="flex border-b border-border">
-            {experiences.map((exp) => (
-              <button
-                key={exp.id}
-                type="button"
-                onClick={() => setActiveTab(exp.id)}
-                className={`relative flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                  activeTab === exp.id
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <span className="relative z-10">{exp.company}</span>
-                <span className="block text-xs font-normal mt-0.5 opacity-70">
-                  {exp.period}
-                </span>
-                {activeTab === exp.id && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Tab content */}
-          <div className="p-8">
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-xl font-semibold text-card-foreground">
-                  {active.role}
-                </h3>
-                <p className="mt-1 text-base font-medium text-primary">
-                  {active.company}
-                </p>
-              </div>
-              <div className="mt-2 flex flex-col gap-1 text-sm text-muted-foreground sm:mt-0 sm:items-end">
-                <span className="flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5" />
-                  {active.period}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="h-3.5 w-3.5" />
-                  {active.location}
-                </span>
-              </div>
-            </div>
-
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-              {active.description}
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Career
             </p>
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              Professional Experience
+            </h2>
+          </div>
+        </ScrollReveal>
 
-            <ul className="mt-6 space-y-3">
-              {active.highlights.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2.5 text-sm text-card-foreground"
+        <ScrollReveal delay={200}>
+          <div className="overflow-hidden rounded-2xl bg-card shadow-lg border border-border">
+            {/* Tab triggers */}
+            <div className="flex border-b border-border">
+              {experiences.map((exp) => (
+                <button
+                  key={exp.id}
+                  type="button"
+                  onClick={() => setActiveTab(exp.id)}
+                  className={`relative flex-1 px-6 py-4 text-sm font-medium transition-colors ${activeTab === exp.id
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                    }`}
                 >
-                  <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 flex flex-wrap gap-2">
-              {active.tech.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
-                >
-                  {t}
-                </span>
+                  <span className="relative z-10">{exp.company}</span>
+                  <span className="block text-xs font-normal mt-0.5 opacity-70">
+                    {exp.period}
+                  </span>
+                  {activeTab === exp.id && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
+                  )}
+                </button>
               ))}
             </div>
+
+            {/* Tab content */}
+            <div className="p-8">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold text-card-foreground">
+                    {active.role}
+                  </h3>
+                  <p className="mt-1 text-base font-medium text-primary">
+                    {active.company}
+                  </p>
+                </div>
+                <div className="mt-2 flex flex-col gap-1 text-sm text-muted-foreground sm:mt-0 sm:items-end">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5" />
+                    {active.period}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="h-3.5 w-3.5" />
+                    {active.location}
+                  </span>
+                </div>
+              </div>
+
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+                {active.description}
+              </p>
+
+              <ul className="mt-6 space-y-3">
+                {active.highlights.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 text-sm text-card-foreground"
+                  >
+                    <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {active.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   )

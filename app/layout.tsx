@@ -1,10 +1,10 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Inter, Source_Code_Pro } from 'next/font/google'
+import { Red_Hat_Display, Source_Code_Pro } from 'next/font/google'
 
 import './globals.css'
 
-const _inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const _redHatDisplay = Red_Hat_Display({ subsets: ['latin'], variable: '--font-red-hat' })
 const _sourceCodePro = Source_Code_Pro({ subsets: ['latin'], variable: '--font-source-code-pro' })
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={_redHatDisplay.variable}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   )

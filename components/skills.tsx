@@ -1,4 +1,5 @@
 import { Code2, Database, Lightbulb, Server } from "lucide-react"
+import { ScrollReveal } from "./scroll-reveal"
 
 const skillGroups = [
   {
@@ -25,41 +26,42 @@ const skillGroups = [
 
 export function Skills() {
   return (
-    <section id="skills" className="bg-secondary/30 px-6 py-24 backdrop-blur-sm lg:py-32">
-      <div className="mx-auto max-w-5xl">
-        <div className="text-center">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-accent">
-            Skills
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            What I work with
-          </h2>
-        </div>
+    <section id="skills" className="bg-background px-6 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl">
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Skills
+            </p>
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              What I work with
+            </h2>
+          </div>
+        </ScrollReveal>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {skillGroups.map((group) => (
-            <div
-              key={group.title}
-              className="group rounded-xl bg-card p-7 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
-            >
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <group.icon className="h-6 w-6 text-primary" />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {skillGroups.map((group, index) => (
+            <ScrollReveal key={group.title} delay={index * 100}>
+              <div className="h-full group rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-accent/50">
+                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10 ring-2 ring-accent/20 transition-all duration-300 group-hover:ring-accent/40 group-hover:bg-accent/20">
+                  <group.icon className="h-7 w-7 text-accent" />
+                </div>
+                <h3 className="mb-5 text-xl font-bold text-card-foreground">
+                  {group.title}
+                </h3>
+                <ul className="space-y-3">
+                  {group.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="flex items-center gap-3 text-sm text-muted-foreground"
+                    >
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="mb-4 text-lg font-semibold text-card-foreground">
-                {group.title}
-              </h3>
-              <ul className="space-y-2">
-                {group.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="flex items-center gap-2 text-sm text-muted-foreground"
-                  >
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

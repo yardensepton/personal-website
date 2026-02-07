@@ -1,4 +1,5 @@
 import { ExternalLink, Github } from "lucide-react"
+import { ScrollReveal } from "./scroll-reveal"
 
 const projects = [
   {
@@ -33,70 +34,71 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projects" className="bg-background/90 px-6 py-24 backdrop-blur-sm lg:py-32">
+    <section id="projects" className="bg-background px-6 py-24 lg:py-32">
       <div className="mx-auto max-w-5xl">
-        <div className="text-center">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-accent">
-            Projects
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Selected work
-          </h2>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Projects
+            </p>
+            <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              Selected work
+            </h2>
+          </div>
+        </ScrollReveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2">
-          {projects.map((project) => (
-            <div
-              key={project.name}
-              className="group flex flex-col rounded-xl border border-border bg-card p-7 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
-            >
-              <h3 className="text-lg font-semibold text-card-foreground">
-                {project.name}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                {project.description}
-              </p>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {projects.map((project, index) => (
+            <ScrollReveal key={project.name} delay={index * 150}>
+              <div className="h-full group flex flex-col rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-accent/50">
+                <h3 className="text-lg font-semibold text-card-foreground">
+                  {project.name}
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-md bg-primary/8 px-2.5 py-1 text-xs font-medium text-primary"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {(project.github || project.frontendGithub) && (
-                <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${project.name} on GitHub`}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md bg-primary/8 px-2.5 py-1 text-xs font-medium text-primary"
                     >
-                      <Github className="h-4 w-4" />
-                      {project.frontendGithub ? "Backend" : "Source Code"}
-                    </a>
-                  )}
-                  {project.frontendGithub && (
-                    <a
-                      href={project.frontendGithub}
-                      className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${project.name} frontend on GitHub`}
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Frontend
-                    </a>
-                  )}
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-              )}
-            </div>
+
+                {(project.github || project.frontendGithub) && (
+                  <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${project.name} on GitHub`}
+                      >
+                        <Github className="h-4 w-4" />
+                        {project.frontendGithub ? "Backend" : "Source Code"}
+                      </a>
+                    )}
+                    {project.frontendGithub && (
+                      <a
+                        href={project.frontendGithub}
+                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${project.name} frontend on GitHub`}
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        Frontend
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
