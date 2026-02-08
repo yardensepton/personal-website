@@ -46,7 +46,7 @@ export function Contact() {
               {"Let's connect"}
             </h2>
             <p className="mx-auto mt-6 max-w-lg text-base text-muted-foreground">
-              {"I'm currently open to new opportunities. Whether you have a question or just want to say hi, feel free to reach out."}
+              {"Whether you have a question or just want to say hi, feel free to reach out."}
             </p>
           </div>
         </ScrollReveal>
